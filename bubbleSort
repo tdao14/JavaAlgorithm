@@ -1,0 +1,22 @@
+public void bubbleSort(int[] a)
+    {
+        int size = a.length;
+        boolean swapped = true;
+        int i = 0;
+    
+        while( i < size - 1 && swapped)
+        {
+      	    swapped = false;
+      	    for(int j = 0; j < size - i -1; j++)
+            {
+                if(a[j] > a[j + 1])
+                {
+                    int temp = a[j];
+                    a[j] = a[j + 1];
+                    a[j + 1] = temp;
+                    swapped = true;
+                }
+            }
+            i+=1; 
+        }
+    }
