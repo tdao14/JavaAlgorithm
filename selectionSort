@@ -1,0 +1,24 @@
+public void selectionSort(int[] a)
+	{
+	    int size = a.length;
+	    int i = 0;
+	    while ( i < size - 1)
+	    {
+	        int s = i;
+	        for ( int j = i + 1; j < size; j++)
+	        {
+	            if(a[s] > a[j])
+	            {
+	                s = j;
+	            }
+	        }
+	        
+	        if(s != i)
+	        {
+	            int temp = a[s];
+	            a[s] = a[i];
+	            a[i] = temp;
+	        }
+	        i += 1;
+	    }
+	}
