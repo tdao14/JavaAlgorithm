@@ -1,0 +1,46 @@
+    public void quickSort(int[] a){
+        quickSortHelper(a, 0, a.length - 1);
+    }
+    
+    public void quickSortHelper(int [] a, int first, int last){
+        if(first < last){
+            int mid = partition(a, first, last);
+            
+            quickSortHelper(a, first, mid-1);
+            quickSortHelper(a, mid + 1, last);
+        }
+    }
+    
+    public int partition(int[] a, int first, int last){
+        int left = first + 1;
+        int right = last;
+        int pivotValue = a[first];
+        
+        boolean done = false;
+        
+        while(!done)
+        {
+            while(left <= right && a[left] <= pivotValue){
+                left += 1;
+            }
+            
+            while(left <= right && a[right] >= pivotValue){
+                right -= 1;
+            }
+            
+            if(left <= right){
+                int temp = a[left];
+                a[left] = a[right];
+                a[right] = temp;
+            }
+            else {
+                done = true;
+            }
+        }
+        
+        int temp = a[right];
+        a[right] = a[first];
+        a[first] = temp;
+        
+        return right;
+    }
