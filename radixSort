@@ -1,0 +1,57 @@
+// This radix sort only work if all the number in the list have the same size
+// Ex : alist = [340,320,143,525,234,525,132,252,242,252,142,243,525,243]   
+    
+    public void radixSort(int[] a)
+    {
+        int size = a.length;
+        int [] a1 = new int[size];
+        int divNum = 1;
+        boolean firstList = true;
+        
+        if(size != 0){
+            int numSizeCheck = a[0];
+            
+            while( (numSizeCheck / divNum) != 0){
+                int numberOfElement = 0;
+                int digit = 0;
+                
+                while(numberOfElement < size){
+                    
+                    int i = 0;
+                   
+                    while (i < size && numberOfElement < size){
+                        
+                        if(firstList){
+                            
+                            int number = (a[i] / divNum) % 10;
+                            
+                            if(number == digit){
+                                a1[numberOfElement] = a[i];
+                                numberOfElement += 1;
+                            }
+                        }
+                        else {
+                            
+                            int number = (a1[i] / divNum) % 10;
+                            
+                            if (number == digit) {
+                                a[numberOfElement] = a1[i];
+                                numberOfElement += 1;
+                            }
+                        }
+                        
+                        i += 1;
+                    }
+                    
+                    digit += 1;
+                }
+                divNum *= 10;
+                firstList = !firstList;
+            }
+            if (!firstList){
+                 for(int i = 0; i < size; i++){
+                    a[i] = a1[i];
+                 }
+            }
+        }
+    }
