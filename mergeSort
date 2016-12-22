@@ -1,0 +1,58 @@
+    public int[] fillArray(int[] a, int begin, int end)
+    {
+        int size = end - begin;
+        int [] temp = new int[size];
+        int j = begin;
+        
+        for(int i = 0; i < size; i++)
+        {
+            temp[i] = a[j];
+            j++;
+        }
+        
+        return temp;
+    }
+    public void mergeSort(int[] a)
+    {
+        int size = a.length;
+        if (size > 1){
+            int mid = size / 2;
+            int [] rightArray = fillArray(a, 0, mid);
+            int [] leftArray = fillArray(a,mid,size);
+                
+            mergeSort(rightArray);
+            mergeSort(leftArray);
+                
+            int r = 0;
+            int l = 0;
+            int rightArrayLen = rightArray.length;
+            int leftArrayLen = leftArray.length;
+                
+            int i = 0;
+                
+            while (r < rightArrayLen && l < leftArrayLen){
+                if (rightArray[r] < leftArray[l]){
+                    a[i] = rightArray[r];
+                    r += 1;
+                }
+                else{
+                    a[i] = leftArray[l];
+                    l +=1;
+                }
+                i+=1;
+            }
+            
+            while (r < rightArrayLen){
+                a[i] = rightArray[r];
+                r +=1;
+                i +=1;
+            }
+                
+                
+            while (l < leftArrayLen){
+                a[i] = leftArray[l];
+                l += 1;
+                i += 1;
+            }
+        }
+    }
