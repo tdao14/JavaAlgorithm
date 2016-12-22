@@ -1,0 +1,62 @@
+	
+  // BinarySearch without recursive; 
+  public boolean binarySearch(int[] a, int value)
+	{
+		int low = 0;
+		int high = a.length - 1;
+		boolean found = false;
+		
+		while(low < high && !found)
+		{
+			int mid = (low + high) / 2;
+			int midValue = a[mid];
+			
+			if(value == midValue)
+			{
+				found = true;
+			}
+			else if( value > midValue)
+			{
+				low = mid + 1;
+			}
+			else
+			{
+				high = mid - 1;
+			}
+		}
+		
+		return found;
+	}
+  
+  
+ 	
+  // BinarySearch with recursive  
+  public boolean binarySearchHelper(int[] a, int value, int lo, int hi)
+	{
+		if(lo > hi)
+		{
+			return false;	
+		}
+		else
+		{
+			int mid = (lo + hi) / 2;
+			int midValue = a[mid];
+			
+			if(midValue == value)
+			{
+				return true;
+			}
+			else if(midValue < value)
+			{
+				return binarySearchHelper(a, value, mid + 1, hi);
+			}
+			else
+			{
+				return binarySearchHelper(a, value, lo, mid - 1);
+			}
+		}
+	}
+	public boolean binarySearch(int[] a, int value)
+	{
+		return binarySearchHelper(a, value, 0, a.length - 1);
+	}
